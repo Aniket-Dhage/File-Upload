@@ -1,0 +1,74 @@
+<h4 class="text-center">Upload Documents</h4>
+
+<form class="container p-3 mb-2" [formGroup]="documentform" (ngSubmit)="submit()">
+  <div class="row justify-content-center">
+    <div class="form-group col-md-6">
+      <label for="exampleInputEmail1">Customer ID:</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter ID"
+        formControlName="customer_id">
+    </div>
+    <div formGroupName="extradocs">
+      <div class="form-group col-md-6">
+        <label for="exampleInputEmail1">ExtraDocs:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter ID"
+          formControlName="test">
+      </div>
+    </div>
+    <div class="w-100"></div><br>
+    <div class="form-group col-md-6">
+      <label for="exampleInputPassword1">Address Proof</label>
+      <input type="file" class="form-control" id="exampleInputPassword1" (change)="onselectedFile1($event)">
+      <img [src]="imgsrc1" height="150">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="exampleInputPassword1">Photo</label>
+      <input type="file" class="form-control" id="exampleInputPassword1" (change)="onselectedFile2($event)">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="exampleInputPassword1">Signature</label>
+      <input type="file" class="form-control" id="exampleInputPassword1" (change)="onselectedFile3($event)">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="exampleInputPassword1">ThumbPrint</label>
+      <input type="file" class="form-control" id="exampleInputPassword1" (change)="onselectedFile4($event)">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="exampleInputPassword1">ThumbPrint02</label>
+      <input type="file" class="form-control" id="exampleInputPassword1" (change)="onselectedFile5($event)">
+    </div>
+
+    <div class="w-100"></div><br>
+    <button type="submit" class="btn btn-primary form-group col-md-2">Submit</button>&nbsp;&nbsp;
+    <!-- <div class="w-100"></div><br> -->
+
+  </div>
+
+</form>
+<button (click)="image()" class="btn btn-primary form-group col-md-2">Get Documents</button><br>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">customer_id</th>
+      <th scope="col">address_proof</th>
+      <th scope="col">photo</th>
+      <th scope="col">signature</th>
+      <th scope="col">thumb</th>
+    </tr>
+  </thead>
+  <tbody *ngIf=retrieveDoc>
+    <tr *ngFor="let r of retrieveDoc">
+      <th scope="row">{{r.customer_id}}</th>
+      <td><img [src]="'data:image/jpeg;base64,'+r.address_proof" height="150"></td>
+      <td><img [src]="'data:image/jpeg;base64,'+r.photo" height="150"></td>
+      <td><img [src]="'data:image/jpeg;base64,'+r.signature" height="150"></td>
+      <td><img [src]="'data:image/jpeg;base64,'+r.thumb" height="150"></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div></div>
